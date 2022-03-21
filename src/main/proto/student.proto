@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "org.example.Studentproto";
+option java_outer_classname = "StudentProto";
+
+package studentproto;
+
+// Interface exported by the server.
+service StudentService {
+
+  rpc AddStudent(Student) returns (AddStudentResponse) {}
+  rpc UpdateStudent(UpdateStudentRequest) returns (AddStudentResponse) {}
+  rpc FindStudentByColor(StudentColor) returns (ListOfStudents) {}
+  rpc FindStudentByName(StudentName) returns (ListOfStudents) {}
+  rpc GetAllStudents(Empty) returns (ListOfStudents) {}
+}
+
+message Empty {
+
+}
+
+message UpdateStudentRequest {
+  int32 id = 1;
+  string name = 2;
+  string color = 3;
+  int32 price = 4;
+  bool is_available = 5;
+}
+
+message Student {
+  string name = 1;
+  string color = 2;
+  int32 price = 3;
+  bool is_available = 4;
+}
+
+message StudentName {
+  string name = 1;
+}
+
+message StudentColor {
+  string color = 1;
+}
+
+message AddStudentResponse {
+  string text = 1;
+}
+
+message ListOfStudents {
+  repeated Student Student = 1;
+}
